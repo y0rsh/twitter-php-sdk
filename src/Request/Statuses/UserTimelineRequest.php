@@ -1,11 +1,11 @@
 <?php
 
-namespace TwitterSDK\Request;
+namespace TwitterSDK\Request\Statuses;
 
 
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
-class GetStatusesUserTimelineRequest
+class UserTimelineRequest
 {
     protected $parameters;
     public function __construct($requestData)

@@ -7,14 +7,20 @@ class Client
 {
     public function get($method, $requestData)
     {
-        $request = $this->getRequest('get_' . $method, $requestData);
+        $request = $this->getRequest($method, $requestData);
     }
 
     public function getRequest($str, $requestData)
     {
-        $parts = preg_split('/[_|\/]/', $str);
+        $namespaceParts = explode('/', $str);
+        $classNameStr = array_pop($namespaceParts);
+        if (count($namespaceParts)) {
+            $namespace = implode('\\', array_map(function($word) {return ucfirst($word);}, $namespaceParts)) . '\\';
+        }
+        $classNameParts = explode('_', $classNameStr);
 
-        $requestClassName = '\\TwitterSDK\\Request\\' . implode('', array_map(function($word) {return ucfirst($word);}, $parts)) . 'Request';
+
+        $requestClassName = '\\TwitterSDK\\Request\\' . $namespace . implode('', array_map(function($word) {return ucfirst($word);}, $classNameParts)) . 'Request';
 
         return new $requestClassName($requestData);
     }
