@@ -3,25 +3,19 @@
 namespace TwitterSDK;
 
 
+use TwitterSDK\Factory\RequestFactory;
+
 class Client
 {
-    public function get($method, $requestData)
+    protected $requestFactory;
+    public function __construct(RequestFactory $requestFactory)
     {
-        $request = $this->getRequest($method, $requestData);
+        $this->requestFactory = $requestFactory;
     }
 
-    public function getRequest($str, $requestData)
+    public function get($method, $requestData)
     {
-        $namespaceParts = explode('/', $str);
-        $classNameStr = array_pop($namespaceParts);
-        if (count($namespaceParts)) {
-            $namespace = implode('\\', array_map(function($word) {return ucfirst($word);}, $namespaceParts)) . '\\';
-        }
-        $classNameParts = explode('_', $classNameStr);
-
-
-        $requestClassName = '\\TwitterSDK\\Request\\' . $namespace . implode('', array_map(function($word) {return ucfirst($word);}, $classNameParts)) . 'Request';
-
-        return new $requestClassName($requestData);
+        $request = $this->requestFactory->createRequest($method, $requestData);
+        dump($request);
     }
 }
