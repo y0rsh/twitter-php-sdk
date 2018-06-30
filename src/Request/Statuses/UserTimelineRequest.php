@@ -3,12 +3,11 @@
 namespace TwitterSDK\Request\Statuses;
 
 
-use Symfony\Component\OptionsResolver\Exception\MissingOptionsException;
-use Symfony\Component\OptionsResolver\Options;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class UserTimelineRequest
 {
+    protected $url = 'https://api.twitter.com/1.1/statuses/user_timeline.json';
     protected $parameters;
     public function __construct($requestData)
     {
@@ -17,15 +16,13 @@ class UserTimelineRequest
     protected function getResolver()
     {
         $resolver = new OptionsResolver();
-        $resolver->setDefined('screen_name');
-        $resolver->setDefined('id');
-        $resolver->setNormalizer('screen_name', function (Options $options) {
-            if (!(isset($options['screen_name']) || isset($options['id']))) {
-                throw new MissingOptionsException('wtf');
-            }
+        $resolver->setDefined(['screen_name', 'user_id', 'since_id', 'count', 'max_id', 'trim_user', 'exclude_replies', 'include_rts']);
+        $resolver->setAllowedTypes('screen_name', 'string');
 
-            return $options['screen_name'];
-        });
         return $resolver;
+    }
+    public function getUrl()
+    {
+        return $this->url;
     }
 }

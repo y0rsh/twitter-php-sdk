@@ -8,6 +8,7 @@ use TwitterSDK\Factory\RequestFactory;
 class Client
 {
     protected $requestFactory;
+    protected $transport
     public function __construct(RequestFactory $requestFactory)
     {
         $this->requestFactory = $requestFactory;
