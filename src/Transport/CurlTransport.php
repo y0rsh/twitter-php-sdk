@@ -4,6 +4,7 @@ namespace TwitterSDK\Transport;
 
 
 use Curl\Curl;
+use TwitterSDK\Request\RequestInterface;
 
 class CurlTransport implements TransportInterface
 {
@@ -11,5 +12,12 @@ class CurlTransport implements TransportInterface
     public function __construct(Curl $curl)
     {
         $this->curl = $curl;
+    }
+
+    public function sendRequest(RequestInterface $request)
+    {
+        $this->curl->get($request->getUrl());
+
+        return $this->curl->response;
     }
 }

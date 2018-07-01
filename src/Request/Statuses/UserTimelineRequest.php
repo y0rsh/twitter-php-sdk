@@ -4,8 +4,9 @@ namespace TwitterSDK\Request\Statuses;
 
 
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use TwitterSDK\Request\RequestInterface;
 
-class UserTimelineRequest
+class UserTimelineRequest implements RequestInterface
 {
     protected $url = 'https://api.twitter.com/1.1/statuses/user_timeline.json';
     protected $parameters;
