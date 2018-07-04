@@ -1,15 +1,15 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: oem
- * Date: 01.07.18
- * Time: 14:34
- */
 
 namespace TwitterSDK\Response;
 
 
+use TwitterSDK\Error\Error;
+
 class Response
 {
-
+    protected $errors = [];
+    public function addError(Error $error)
+    {
+        $this->errors[] = $error;
+    }
 }

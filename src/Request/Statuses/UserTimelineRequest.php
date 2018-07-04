@@ -10,6 +10,7 @@ class UserTimelineRequest implements RequestInterface
 {
     protected $url = 'https://api.twitter.com/1.1/statuses/user_timeline.json';
     protected $parameters;
+    protected $isAuthNeeded;
     public function __construct($requestData)
     {
         $this->parameters = $this->getResolver()->resolve($requestData);
