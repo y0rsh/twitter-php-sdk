@@ -20,4 +20,11 @@ class CurlTransport implements TransportInterface
 
         return $this->curl->response;
     }
+
+    public function sendPostRequest(RequestInterface $request)
+    {
+        $this->curl->post($request->getUrl());
+
+        return $this->curl->response;
+    }
 }

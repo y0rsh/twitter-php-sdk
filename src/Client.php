@@ -29,7 +29,7 @@ class Client
     public function post($method, $requestData)
     {
         $request = $this->requestFactory->createRequest($method, $requestData);
-        $response = $this->transport->sendRequest($request);
+        $response = $this->transport->sendPostRequest($request);
 
         return $this->processResponse($response);
     }
