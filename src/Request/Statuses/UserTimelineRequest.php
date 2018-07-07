@@ -27,4 +27,5 @@ class UserTimelineRequest implements RequestInterface
     {
         return $this->url;
     }
+
 }

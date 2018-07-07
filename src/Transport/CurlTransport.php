@@ -23,6 +23,10 @@ class CurlTransport implements TransportInterface
 
     public function sendPostRequest(RequestInterface $request)
     {
+        foreach ($request->getHeaders() as $header => $value) {
+            $this->curl->setHeader($header, $value);
+        }
+
         $this->curl->post($request->getUrl());
 
         return $this->curl->response;
