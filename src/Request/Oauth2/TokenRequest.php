@@ -20,7 +20,7 @@ class TokenRequest implements RequestInterface
     protected function getResolver()
     {
         $resolver = new OptionsResolver();
-        $resolver->setDefined(['config']);
+        $resolver->setDefined(['grant_type']);
 
         return $resolver;
     }

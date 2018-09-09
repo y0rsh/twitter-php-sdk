@@ -12,10 +12,12 @@ class Client
 {
     protected $requestFactory;
     protected $transport;
-    public function __construct(RequestFactory $requestFactory, TransportInterface $transport)
+    protected $settings;
+    public function __construct(RequestFactory $requestFactory, TransportInterface $transport, $settings)
     {
         $this->requestFactory = $requestFactory;
         $this->transport = $transport;
+        $this->settings = $settings;
     }
 
     public function get($method, $requestData)
@@ -46,6 +48,5 @@ class Client
             }
         }
         dump($response);
-        dump($responseData);
     }
 }

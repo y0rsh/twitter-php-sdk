@@ -4,7 +4,6 @@ namespace TwitterSDK\Error;
 
 class Error
 {
-
     protected $code;
     protected $message;
     public function __construct(int $code, string $message)
